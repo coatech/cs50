@@ -26,6 +26,7 @@
 // board
 int board[DIM_MAX][DIM_MAX];
 int check[DIM_MAX][DIM_MAX];
+int temp[DIM_MAX][DIM_MAX];
 
 // dimensions
 int d;
@@ -178,6 +179,13 @@ void init(void)
 			size++; 
 		}
     }
+	
+	if(d*d%2 ==0){
+		temp[d][d-2] = board[d][d-3];
+		board[d][d-2] = temp[d][d-2];
+		temp[d][d-3] = board[d][d-2];
+		board[d][d-2] = temp[d][d-3];
+	}
 }
 
 /**
@@ -249,12 +257,11 @@ bool move(int tile)
 			}
 		}
 	}
-	printf("FOUND TITLE LOCATION %i", tile_location);
-	printf("FOUND SPACE LOCATION %i", space_location);
+	//printf("FOUND TITLE LOCATION %i", tile_location);
+	//printf("FOUND SPACE LOCATION %i", space_location);
 	int distance = tile_location - space_location;
-	printf("FOUND LOCATION %i", distance);
+	//printf("FOUND LOCATION %i", distance);
 	if (abs(distance) == 1 || abs(distance) == d) {
-		int temp[d][d];
 		temp[ispace][jspace] = board[ispace][jspace];
 		board[ispace][jspace] = board[itile][jtile];
 		board[itile][jtile] = temp[ispace][jspace];

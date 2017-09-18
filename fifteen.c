@@ -172,19 +172,18 @@ void init(void)
     for(int i = 0; i < d; i++){
 		for(int j = 0; j < d; j++){
 			if (size < d*d){
-			check[i][j] = size;
+				check[i][j] = size;
 			}else{
-			check[i][j] = 0;
+				check[i][j] = 0;
 			}
 			size++; 
 		}
     }
 	
-	if(d*d%2 ==0){
-		temp[d][d-2] = board[d][d-3];
-		board[d][d-2] = temp[d][d-2];
-		temp[d][d-3] = board[d][d-2];
-		board[d][d-2] = temp[d][d-3];
+	if(d*d%2 == 0){
+		int temp = board[d-1][d-3];
+		board[d-1][d-3] = board[d-1][d-2];
+		board[d-1][d-2] = temp;
 	}
 }
 
@@ -257,10 +256,10 @@ bool move(int tile)
 			}
 		}
 	}
-	//printf("FOUND TITLE LOCATION %i", tile_location);
-	//printf("FOUND SPACE LOCATION %i", space_location);
+	printf("FOUND TITLE LOCATION %i", tile_location);
+	printf("FOUND SPACE LOCATION %i", space_location);
 	int distance = tile_location - space_location;
-	//printf("FOUND LOCATION %i", distance);
+	printf("FOUND LOCATION %i", distance);
 	if (abs(distance) == 1 || abs(distance) == d) {
 		temp[ispace][jspace] = board[ispace][jspace];
 		board[ispace][jspace] = board[itile][jtile];

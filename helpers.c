@@ -13,7 +13,7 @@
  */
 bool search(int value, int values[], int n)
 {
-    int l = 0, r = n-1;
+    int l = 0, r = n - 1;
   while (l <= r)
   {
     int m = l + (r-l)/2;
